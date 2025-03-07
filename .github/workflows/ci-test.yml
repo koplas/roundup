@@ -238,10 +238,7 @@ jobs:
           # gpg doesn't build on Ubuntu 24.04. Ignore failure on that
           # platform only. Grep os-release to cover matrix.os in
           # [ubunutu-latest, ubuntu-24.04].
-          pip install gpg || ( save_status=$?; \
-             if grep 24.04 /etc/os-release > /dev/null; then \
-                 echo "Ignoring error ubuntu-24.04: issue2551368"; exit 0; \
-                 else exit $save_status; fi; )
+          pip install gpg
 
       - name: Install aux packages that need versions differences
         # if zstd fails install, keep going with test, don't abort

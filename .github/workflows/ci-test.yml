@@ -238,7 +238,9 @@ jobs:
           # gpg doesn't build on Ubuntu 24.04. Ignore failure on that
           # platform only. Grep os-release to cover matrix.os in
           # [ubunutu-latest, ubuntu-24.04].
-          pip install gpg
+          sudo apt-get install git build-essential pandoc
+          git clone git://git.gnupg.org/gpgmepy
+          cd gpgmepy && ./autogen.sh && mkdir build && cd build && ../configure --enable-maintainer-mode --prefix /usr && make && sudo make install
 
       - name: Install aux packages that need versions differences
         # if zstd fails install, keep going with test, don't abort
